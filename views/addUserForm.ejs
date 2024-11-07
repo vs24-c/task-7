@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registr Form</title>
+    <link rel="stylesheet" href="/stylesheets/registrForm.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+  </head>
+  <body>
+    <%- include('./parts/header.ejs') %>
+    <div class="wrapper">
+      <main class="page">
+        <div class="page__container">
+          <form
+          id="userForm"
+            action="/reg<%= users?.id ? '/' + users.id : '' %>"
+            method="POST"
+            class="page__form form"
+          >
+            <div class="form__title">
+              <h3>Registration Form</h3>
+              <% if(errors.length) { %>
+                <ul class="error-box">
+                  <% errors.forEach(function(error) { %>
+                  <li class="error-message"><%= error.msg %></li>
+                  <% }) %>
+                </ul>
+              <% } %>
+            </div>
+            <label for="name" class="form__label"
+              >Please your Name
+              <input
+              id="name"
+                type="text"
+                name="name"
+                placeholder="Name"
+                required
+                value="<%= users?.name %>"
+              />
+            </label>
+            <label for="surname" class="form__label"
+              >Please enter your Surname
+              <input
+              id="surname"
+                type="text"
+                name="surname"
+                placeholder="Surname"
+                required
+                value="<%= users?.surname %>"
+              />
+            </label>
+            <label for="age" class="form__label"
+              >PLease enter your Age
+              <input
+              id="age"
+                type="number"
+                name="age"
+                placeholder="Age"
+                required
+                value="<%= users?.age %>"
+              />
+            </label>
+            <label for="email" class="form__label"
+              >Please enter your E-mail
+              <input
+              id="email"
+                type="text"
+                name="email"
+                placeholder="E-mail"
+                required
+                value="<%= users?.email %>"
+              />
+            </label>
+            <button id="submit" type="submit" class="form__btn">
+              <%= users && users.id ? 'Edit User' : 'Add User' %>
+            </button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <script src="/javascripts/script.js"></script>
+  </body>
+</html>
